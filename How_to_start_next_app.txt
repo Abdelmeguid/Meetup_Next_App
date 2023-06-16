@@ -1,0 +1,3 @@
+npx create-next-app
+then write app name
+then Enter...Enter if you do not use typescript or ESLint
