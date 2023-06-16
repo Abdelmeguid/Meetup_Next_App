@@ -36,7 +36,10 @@ export async function getStaticProps() {
   // fetch data from an API
   const client = await MongoClient.connect(
     "mongodb+srv://ahmed:qwerty666666@cluster0.ztcuetb.mongodb.net/?retryWrites=true&w=majority",
-    { useUnifiedTopology: true, useNewUrlParser: true }
+    {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+    }
   );
   const db = client.db();
 
@@ -58,5 +61,33 @@ export async function getStaticProps() {
     revalidate: 1,
   };
 }
+
+// export async function getStaticProps() {
+//   // fetch data from an API
+//   const client = await MongoClient.connect(
+//     process.env.MONGODB_CONNECTION_STRING
+//   );
+//   const db = client.db();
+
+//   const meetupsCollection = db.collection("meetups");
+
+//   const meetups = await meetupsCollection.find().toArray();
+
+//   client.close();
+
+//   // remove the _id property from the meetups object
+//   const meetupsWithoutId = meetups.map((meetup) => ({
+//     title: meetup.title,
+//     address: meetup.address,
+//     image: meetup.image,
+//   }));
+
+//   return {
+//     props: {
+//       meetups: meetupsWithoutId,
+//     },
+//     revalidate: 1,
+//   };
+// }
 
 export default HomePage;
